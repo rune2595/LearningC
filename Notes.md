@@ -1,4 +1,4 @@
-# C++ Advanced Course
+# Notes on C-programming
 
 Author: __*rune2595*__
 
