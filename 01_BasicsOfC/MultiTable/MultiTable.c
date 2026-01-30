@@ -23,5 +23,10 @@ int main() {
 		ii++;
 	}
 
+	printf("\nAnd now with a for loop: \n");
+	for (int jj = 1; jj <= 10; jj++) {
+		printf("%d * %d = %d\n", jj, input, jj * input);
+	}
+
 	return 0;
 }
