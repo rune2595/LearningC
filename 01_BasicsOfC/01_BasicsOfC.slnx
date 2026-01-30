@@ -3,6 +3,8 @@
     <Platform Name="x64" />
     <Platform Name="x86" />
   </Configurations>
+  <Project Path="ConditionCheck/ConditionCheck.vcxproj" Id="e848885a-0140-45c4-a1ae-9e934b0a747c" />
   <Project Path="GradeAssign/GradeAssign.vcxproj" Id="89276a0a-427e-4364-af5d-11598e7af722" />
   <Project Path="HelloWorld/HelloWorld.vcxproj" Id="54492ba1-99c1-4d7c-bf65-3710d7edc5c7" />
+  <Project Path="PersonData/PersonData.vcxproj" Id="072af232-3e6f-418d-aec9-9a28ac44c7c5" />
 </Solution>

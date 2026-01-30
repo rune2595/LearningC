@@ -16,13 +16,12 @@ int main() {
 	int inputAge = 18;
 	char inputGrade = 'B';
 	double inputGPA = 3.7;
-	
+
 	printf("Student information:\n");
 	printf("Name:\t %s \n", inputName);
 	printf("Age:\t %d \n", inputAge);
 	printf("Grade:\t %c \n", inputGrade);
 	printf("GPA:\t %.1f \n", inputGPA);
-
 
 	return 0;
 }
