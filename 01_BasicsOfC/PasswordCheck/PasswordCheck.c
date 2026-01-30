@@ -26,7 +26,6 @@ int main() {
 		else {
 			printf("Password is wrong! Try again.\n");
 		}
-
 	}
 
 	return 0;
