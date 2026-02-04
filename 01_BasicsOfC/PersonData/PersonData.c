@@ -14,7 +14,7 @@ int main() {
 
 	char inputName[20];
 	int inputAge;
-	char inputGender[20];
+	char inputGender[2];
 	float inputHeight;
 	float inputWeight;
 
@@ -24,7 +24,7 @@ int main() {
 	printf("Age\t\t: ");
 	scanf_s("%d", &inputAge);
 	printf("Gender (M or F)\t: ");
-	scanf_s("%s", &inputGender, 20);
+	scanf_s("%s", &inputGender, 2);
 	printf("Height (in cm)\t: ");
 	scanf_s("%f", &inputHeight);
 	printf("Weight (in kg)\t: ");
