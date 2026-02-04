@@ -10,5 +10,6 @@
   <Project Path="PasswordCheck/PasswordCheck.vcxproj" Id="fadc6a17-f507-423d-8cc4-1bd1aa6089a7" />
   <Project Path="PasswordCheck_doWhile/PasswordCheck_doWhile.vcxproj" Id="5cffe5b7-f7f1-4553-bcdf-3393169c6621" />
   <Project Path="PersonData/PersonData.vcxproj" Id="072af232-3e6f-418d-aec9-9a28ac44c7c5" />
+  <Project Path="PrintNonMultiples/PrintNonMultiples.vcxproj" Id="16fc1089-e669-48c0-a461-df9edc3aa7d1" />
   <Project Path="SumLoop/SumLoop.vcxproj" Id="c51ff7f4-e2c3-4bf6-8844-56ac3d5ef483" />
 </Solution>
