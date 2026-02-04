@@ -8,5 +8,7 @@
   <Project Path="HelloWorld/HelloWorld.vcxproj" Id="54492ba1-99c1-4d7c-bf65-3710d7edc5c7" />
   <Project Path="MultiTable/MultiTable.vcxproj" Id="5e9dc8cb-3bd1-40c4-94d5-a9343a1d26e7" />
   <Project Path="PasswordCheck/PasswordCheck.vcxproj" Id="fadc6a17-f507-423d-8cc4-1bd1aa6089a7" />
+  <Project Path="PasswordCheck_doWhile/PasswordCheck_doWhile.vcxproj" Id="5cffe5b7-f7f1-4553-bcdf-3393169c6621" />
   <Project Path="PersonData/PersonData.vcxproj" Id="072af232-3e6f-418d-aec9-9a28ac44c7c5" />
+  <Project Path="SumLoop/SumLoop.vcxproj" Id="c51ff7f4-e2c3-4bf6-8844-56ac3d5ef483" />
 </Solution>

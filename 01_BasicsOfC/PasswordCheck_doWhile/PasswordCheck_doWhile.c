@@ -1,7 +1,7 @@
 // --------------------- File Inforation ---------------------
-// File			: PasswordCheck.c
+// File			: PasswordCheck_doWhile.c
 // Author		: Rune Dirk Willen
-// Date			: 30-01-2026
+// Date			: 04-02-2026
 // Description	: A simple program to check password in C.
 // -----------------------------------------------------------
 
@@ -11,23 +11,23 @@
 
 // Main function
 int main() {
-	
+
 	char password[] = "Cake123";
 	int isTrue = 0;
 	char input[100];
 
-	// Can be done with do-while loop as well
-	while (isTrue == 0) {
+	// Do-while loops always runs once
+	do {
 		printf("Please type your password: ");
 		scanf_s("%s", input, 100);
-
 		if (strcmp(password, input) == 0) {
+			printf("Password correct!\n");
 			isTrue = 1;
 		}
 		else {
-			printf("Password is wrong! Try again.\n");
+			printf("Password incorrect!\n");
 		}
-	}
+	} while (!isTrue);
 
 	return 0;
 }
