@@ -13,6 +13,9 @@ ____
     2.1 [Introduction to C](#2.1)<br>
     2.2 [Variables](#2.2)<br>
     2.3 [Pointers and Addresses](#2.3)<br>
+    2.4 [Input with Scanf](#2.4)<br>
+    2.5 [Arithmetic Operations and Expressions](#2.5)<br>
+
 
 ## Section 1: Introduction<a name="1"></a>
 [Go to top](#top)
@@ -102,9 +105,29 @@ int main(void){
 
 But why pointers? Often you need to do memory manipulation, where data is stored in consecutive blocks of memory, and you are able to get the first block. When defining fx. lists, the programming language is storing a reference to the starting point of the list.
 
+### 2.4 Input with Scanf<a name="2.4"></a>
+[Go to top](#top)
 
+When taking user input, the storage variables should be initialized first. Instead of scanning the input to the variable, it should be scanned to the memory location of the variable, i.e., the address (`&variable`).
 
+The function `scanf` can take multiple inputs in one line by just giving more identifier characters. Similarly, the user can input the variables in one line using spaces, as the function looks for voids to distinguish inputs. The format of what scanf should read can be defined in the function call.
+```c
+#include <stdio.h>
 
+int main(void) {
+    int i = 0;
+    int j = 0;
 
+    scanf(%d%d, &i, &j);    // Scanf looks for voids to distinguish the variables
+    scanf(%d/%d, &i, &j);   // Scanf looks for input as: input1/input2. If given as above, the second input will not be found, as it is looking for "/" as the separator
+}
+```
+
+### 2.5 Arithmetic Operations and Expressions<a name="2.5"></a>
+[Go to top](#top)
+
+It is important to keep track of types when doing arithmetic operations. If all input are of type `int`, the result will always be ans `int` as well. At least one input need to be a floating point for the result to be interpreted as a float as well. Results can cast into other types, fx., if two floating points are divided (and the result should be a float), the result can be cast into an `int`, meaning the decimal points will be neglected (5.5 becomes 5).
+
+Unary operators have the highest presidence in c. That is the `-` and `+` in front of a variable to negate it or the opposite.
 
 
