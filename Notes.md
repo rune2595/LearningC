@@ -15,7 +15,16 @@ ____
     2.3 [Pointers and Addresses](#2.3)<br>
     2.4 [Input with Scanf](#2.4)<br>
     2.5 [Arithmetic Operations and Expressions](#2.5)<br>
-
+    2.6 [Booleans and If Statements](#2.6)<br>
+    2.7 [Logical Operators and Switches](#2.7)<br>
+    2.8 [Loops](#2.8)<br>
+    2.9 [Characters](#2.9)<br>
+    2.10 [Working with Arrays](#2.10)<br>
+    2.11 [Basics of Functions](#2.11)<br>
+    2.12 [Using Pointers with Functions](#2.12)<br>
+    2.13 [Using Pointers with Arrays](#2.13)<br>
+    2.14 [Working with Strings](#2.14)<br>
+    
 
 ## Section 1: Introduction<a name="1"></a>
 [Go to top](#top)
@@ -39,7 +48,7 @@ __Bold text__
 ## Section 2: Fundamentals of Programming in C<a name="2"></a>
 [Go to top](#top)
 
-These notes relate to the course *Fundamentals of Programming in C* by Scott ??, available for free on Udemy.com. The course takes basis in ubuntu using the gcc compiler.
+These notes relate to the course *Fundamentals of Programming in C* by Scott Consentino, available for free on Udemy.com. The course takes basis in ubuntu using the gcc compiler.
 
 ### 2.1 Introduction to C<a name="2.1"></a>
 [Go to top](#top)
@@ -47,6 +56,8 @@ These notes relate to the course *Fundamentals of Programming in C* by Scott ??,
 Statements that start with '#' are called directives. Typically, a C-program is divided into three sections: (1) pre-processing, (2) compiling, and (3) linking. 
 
 (1) looks at the directives and parses them. In (2), all the code is turned into  machine instructions also called object code. (3) combines the object code with everything else that is needed to make the code work.
+
+A special type of directive is the `#define`, which is used to define global variables or __macros__.
 
 ### 2.2 Variables<a name="2.2"></a>
 [Go to top](#top)
@@ -129,5 +140,175 @@ int main(void) {
 It is important to keep track of types when doing arithmetic operations. If all input are of type `int`, the result will always be ans `int` as well. At least one input need to be a floating point for the result to be interpreted as a float as well. Results can cast into other types, fx., if two floating points are divided (and the result should be a float), the result can be cast into an `int`, meaning the decimal points will be neglected (5.5 becomes 5).
 
 Unary operators have the highest presidence in c. That is the `-` and `+` in front of a variable to negate it or the opposite.
+
+
+### 2.6 Booleans and If Statements<a name="2.6"></a>
+[Go to top](#top)
+
+C does not have a default boolean implementation. Therefore, the library `<stdbool.h>`, which will include the `true` and `false` statements. However, 0 and 1 can also be used. Otherwise, it works exactly the same as any other programming language.
+
+
+### 2.7 Logical Operators and Switches<a name="2.7"></a>
+[Go to top](#top)
+
+Logical operators:
+
+AND : &&
+OR  : ||
+NOT : ~
+
+`switch` cases is typically more efficient than `if` statements for situations where there are many cases. The corresponding `else` is `default` and executes if no other case is activated.
+
+
+### 2.8 Loops<a name="2.8"></a>
+[Go to top](#top)
+
+Loops are similar to most other programming languages.
+
+```c
+// Basic while loop. Checks before running.
+
+int main(void) {
+    int i = 0;
+
+    while (i <= 10) {
+        printf("%d",i);
+        i++;
+    }
+
+    return 0;
+}
+```
+
+```c
+// Basic do-while loop. Checks after running. I.e., will execute at least once unlike the while loop.
+
+int main(void) {
+    int i = 0;
+
+    do {
+        printf("%d",i);
+        i++;
+    } while (i <= 10);
+
+    return 0;
+}
+```
+
+```c
+// Basic for loop. Iterates a known number of times.
+
+int main(void) {
+    
+    for (int i = 0; i <= 10; i++) {
+        printf("%d",i);
+    }
+
+    return 0;
+}
+```
+
+Typically, `for` loops are preferred for simple conditions, while `while` (and `do while`) loops are more useful for more complex conditions.
+
+
+### 2.9 Characters<a name="2.9"></a>
+[Go to top](#top)
+
+Characters are called using the type `char` and needs to be placed in single quotes `''`. Using double quotes `""` will lead to an error, as C thinks it is a string (which is actually a pointer to a set of characters `char *`).
+
+Interestingly, characters are just numbers in disguise (through ASCII code). Therefore, if characters are printed using the integer format (`%d`) rather than the character format (`%c`), it will print the ASCII value. Additionally, it is possible to add to characters using basic arithmetic, fx.:
+```c
+int main(void) {
+    char c = 'A';
+    printf("%c\n",c);
+    c += 1;
+    printf("%c\n",c);
+
+    return 0;
+}
+```
+will first print 'A' and then 'B'. To convert from upper case to lower case, simply add 32 and vice versa.
+
+Note that integers can be formatted as a character... Might be useful for low level programming.
+
+`scanf` can be used to get user input for characters. However, `getchar()` can also be used to get the __first__ character. Putting in numeric values will give the character value, i.e., typing 65 during the prompt will scan '6'. `putchar` can be used to print single characters like `printf`.
+
+
+### 2.10 Working with Arrays<a name="2.10"></a>
+[Go to top](#top)
+
+Arrays are used to declare lists of the same type. It is not possible to provide more values than the size of the array, but it is possible to give less. In that case uninitialized values are set to 0.
+
+In C it is possible to index values that are not in the array. This is due to C not conducting checks of the array bounds unlike higher level languages. This means that C reads garbage memory. It is, therefore, neccessary to conduct your own checks of the array bounds.
+
+The `sizeof` function can be used to get the size of elements or arrays in bits. `sizeof(array)/sizeof(array[0])` will give the actual length of the array.
+
+
+### 2.11 Basics of Functions<a name="2.11"></a>
+[Go to top](#top)
+
+Similar to other programming languages. Used to avoid code repetition. See C++ notes.
+
+Note that functions should be defined before `main` to avoid warnings. Another way is to simply declare the function before `main`, i.e., the name and input types (explicit declaration). If it is defined after it is an implicit declaration. The explicit declaration makes it possible to give errors if input is not of the correct type.
+
+
+### 2.12 Using Pointers with Functions<a name="2.12"></a>
+[Go to top](#top)
+
+Using pointers instead of the variable makes it possible to change the value inside a function. This means that the function references the memory address rather than the value itself, leading to overwriting what is at that memory location. The example below shows a simple program where the value at a memory location is incremented by 1.
+```c
+#include <stdio.h>
+
+int* addOne(int *);
+
+int main(void) {
+    int i = 0;
+    int* a = &i;
+
+    a = addOne(a);
+    printf("%d",*a);
+
+    return 0;
+}
+
+int* addOne(int* a) {
+    *a = *a + 1;
+    return a;
+}
+```
+In this case the printed value will be `i+1=0+1=1`.
+
+
+### 2.13 Using Pointers with Arrays<a name="2.13"></a>
+[Go to top](#top)
+
+Creating a pointer to the first element of an array can be useful in assembly. This is because the pointer can be incremented to retrieve the other elements in an array. The example below shows how to easily loop through an array using pointers, giving the sum of the elements.
+```c
+#include <stdio.h>
+
+int main(void) {
+    int a[3] = {1,2,3};
+    int sum, *p;
+    sum = 0;
+
+    for (p = &a[0]; p < &a[3]; p++) {
+        sum += *p;
+    }
+
+    printf("%d\n",sum);
+
+    return 0;
+}
+```
+
+
+### 2.14 Working with Strings<a name="2.14"></a>
+[Go to top](#top)
+
+Strings can be defined in two ways. The first is simply an array of characters. The second is as a pointer, which initially will point to the first element of the string.
+
+The library `<string.h>` contains a lot of useful functions for working with strings.
+
+Note that C automatically adds the null terminator (`\0`) to the end of the string. This is how C recognizes when to stop printing.
 
 
