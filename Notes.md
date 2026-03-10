@@ -351,10 +351,11 @@ A pointer is simply a variable that stores the memory address of another variabl
 There are multiple reasons to use pointers rather than accessing the variables. Below is a list from the course:
 - Allows for efficient memory management: `malloc()`, `calloc()`, `free()` (these functions allows for demanding and freeing memory during running of the program without naming, i.e., just using a pointer)
 - Function arguments: Call by reference instead of value
-- Efficient array and string handling. Since the pointer can be used to iterate easily.
+- Efficient array and string handling. Since the pointer can be used to iterate easily. Note that doing +1 for a pointer is NOT adding 1 to the address, but tells it to go to the next location which depends on the type size (fx., for `char` of size 1 byte it will increment by 1 byte, for `int` of size 4 bytes it will increment by 4 bytes).
+- Accessing hardware and system level programming
+- Building complex data structures like linked lists, trees, queues, stacks
 
-Code examples are shown below.
-
+Code examples are shown below:
 ```c
 // Example of using malloc(). Creates a pointer that points to a memory location with no name. In this case the location is reserved for a variable of type int.
 
@@ -381,13 +382,97 @@ void swap(int *a, int *b) { // This function swaps the values in the memory loca
 ### 3.4 Pointer Expression<a name="3.4"></a>
 [Go to top](#top)
 
+The format string for pointers is `%p`. It is important to understand the pointer operators to ensure to right values are called. See example below.
+```c
+#include <stdio.h>
+
+int main(void) {
+    int a = 5;
+    int *b;
+    b = &a;
+
+    printf("Address of a is: %p",&a);   // Prints the address of a by using the addressof operator
+    printf("Address of a is: %p",b);    // Prints the address of a by calling the pointer
+    printf("Address of b is: %p",&b);   // Prints the address of b by using the addressof operator
+    printf("Value of a is: %d",a);      // Prints the value of a (an int) by calling a directly
+    printf("Value of a is: %d",*(&a));  // Prints the value of a by dereferencing the addressof a
+    printf("Value of a is: %d",*b);     // Prints the value of a by dereferencing the pointer
+    printf("Value of b is: %p",b);      // Prints the value of b (an address) by calling b directly
+
+    return 0;
+}
+```
+
 
 ### 3.5 Pointer Types<a name="3.5"></a>
 [Go to top](#top)
 
+The pointer type depends on the type of the variable it points at. Fx. a pointer pointing to a `char` will be a `char`-pointer, while a pointer pointing to an `int` will be an `int`-pointer. This definition limits a pointer to store only the address of a type it is initialized to store.
+
+No matter the type only the base address is saved in the pointer, that is the first byte address. That is why a pointer is always the same size in bytes.
+
 
 ### 3.6 Call by Value<a name="3.6"></a>
 [Go to top](#top)
+
+When using call by value functions without returning, it is impossible to change the original values. See fx. this swap function:
+```c
+#include <stdio.h>
+
+void swap(int x, int y);
+
+int main(void) {
+    int a = 10;
+    int b = 20;
+
+    swap(a, b);
+    printf("a = %d",a); // Expectation: a = 20, Reality: a = 10
+    printf("b = %d".b); // Expectation: b = 10, Reality: b = 20
+
+    return 0;
+}
+
+void swap(int x, int y) {
+    int temp;
+    temp = x;
+    x = y;
+    y = temp;
+}
+```
+A workaround is to implement a function that returns two `int`s through a `struct`.
+```c
+#include <stdio.h>
+
+struct A {
+    int x;
+    int y;
+}
+
+struct A swap(int x, int y);
+
+int main(void) {
+    int a = 10;
+    int b = 20;
+
+    struct A res = swap(a, b);
+    
+
+    printf("a = %d",a); // Expectation: a = 20, Reality: a = 10
+    printf("b = %d".b); // Expectation: b = 10, Reality: b = 20
+
+    return 0;
+}
+
+struct A swap(int x, int y) {
+    struct A s;
+    s.x = y;
+    s.y = x;
+
+    return s;
+}
+```
+
+
 
 
 ### 3.7 Call by Reference<a name="3.7"></a>
