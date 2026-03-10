@@ -24,6 +24,18 @@ ____
     2.12 [Using Pointers with Functions](#2.12)<br>
     2.13 [Using Pointers with Arrays](#2.13)<br>
     2.14 [Working with Strings](#2.14)<br>
+3. [Understanding pointers in C](#3)<br>
+    3.1 [Introduction to Memory Structure](#3.1)<br>
+    3.2 [What is a Pointer?](#3.2)<br>
+    3.3 [Why Pointers?](#3.3)<br>
+    3.4 [Pointer Expression](#3.4)<br>
+    3.5 [Pointer Types](#3.5)<br>
+    3.6 [Call by Value](#3.6)<br>
+    3.7 [Call by Reference](#3.7)<br>
+    3.8 [Function Returning Pointers](#3.8)<br>
+    3.9 [Programming Example 1](#3.9)<br>
+    3.10 [Programming Example 2](#3.10)<br>
+    3.11 [Pointer Arithmetic](#3.11)<br>
     
 
 ## Section 1: Introduction<a name="1"></a>
@@ -241,7 +253,7 @@ Arrays are used to declare lists of the same type. It is not possible to provide
 
 In C it is possible to index values that are not in the array. This is due to C not conducting checks of the array bounds unlike higher level languages. This means that C reads garbage memory. It is, therefore, neccessary to conduct your own checks of the array bounds.
 
-The `sizeof` function can be used to get the size of elements or arrays in bits. `sizeof(array)/sizeof(array[0])` will give the actual length of the array.
+The `sizeof` function can be used to get the size of elements or arrays in bytes. `sizeof(array)/sizeof(array[0])` will give the actual length of the array.
 
 
 ### 2.11 Basics of Functions<a name="2.11"></a>
@@ -312,3 +324,87 @@ The library `<string.h>` contains a lot of useful functions for working with str
 Note that C automatically adds the null terminator (`\0`) to the end of the string. This is how C recognizes when to stop printing.
 
 
+## Section 3: Understanding Pointers in C<a name="3"></a>
+[Go to top](#top)
+
+These notes relate to the course *Understanding Pointers in C* by Dr. B. S. Satpute, available for free on Udemy.com.
+
+### 3.1 Introduction to Memory Structure<a name="3.1"></a>
+[Go to top](#top)
+
+RAM can be viewed as a tiled floor where each tile represents a byte with a certain memory address given in hexadecimal numbers. When assigning, fx., an `int` 4 bytes will be allocated in which the value of the int is stored. For characters, 1 byte is allocated, however, before storing the characters will first be converted into the ASCII value (A -> 65) which in turn will be converted into the binary equivalent (65 -> 01000001). Other types will also be converted into binary values.
+
+Note that the size of a pointer depends on the architecture. 32-bit the size is 4 byte, 64-bit the size is 8 byte.
+
+
+### 3.2 What is a Pointer?<a name="3.2"></a>
+[Go to top](#top)
+
+There are two important operators related to pointers. `&` - the address of operator, `*` - value at address (also called dereference operator). Say that an integer `a=5` at memory address `ADC1` (hexadecimal). Then `&a` will be `ABC1` and `*(&a)=a=5`.
+
+A pointer is simply a variable that stores the memory address of another variable. It will have its own memory address, different from the variable that it points to.
+
+
+### 3.3 Why Pointers?<a name="3.3"></a>
+[Go to top](#top)
+
+There are multiple reasons to use pointers rather than accessing the variables. Below is a list from the course:
+- Allows for efficient memory management: `malloc()`, `calloc()`, `free()` (these functions allows for demanding and freeing memory during running of the program without naming, i.e., just using a pointer)
+- Function arguments: Call by reference instead of value
+- Efficient array and string handling. Since the pointer can be used to iterate easily.
+
+Code examples are shown below.
+
+```c
+// Example of using malloc(). Creates a pointer that points to a memory location with no name. In this case the location is reserved for a variable of type int.
+
+int *p = (int *) malloc(sizeof(int));
+```
+
+```c
+// Example of using call by reference.
+
+void swap(int a, int b) { // This function simple copies the input rather than swapping it in memory. The original variables are unchanged
+    int temp = a;
+    a = b;
+    b = temp;
+}
+
+void swap(int *a, int *b) { // This function swaps the values in the memory location, meaning it will have an effect even if the return type is void. The original variables are swapped.
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+}
+```
+
+
+### 3.4 Pointer Expression<a name="3.4"></a>
+[Go to top](#top)
+
+
+### 3.5 Pointer Types<a name="3.5"></a>
+[Go to top](#top)
+
+
+### 3.6 Call by Value<a name="3.6"></a>
+[Go to top](#top)
+
+
+### 3.7 Call by Reference<a name="3.7"></a>
+[Go to top](#top)
+
+
+### 3.8 Function returning Poitners<a name="3.8"></a>
+[Go to top](#top)
+
+
+### 3.9 Programming Example 1<a name="3.9"></a>
+[Go to top](#top)
+
+
+### 3.10 Programming Example 2<a name="3.10"></a>
+[Go to top](#top)
+
+
+### 3.11 Pointer Arithmetic<a name="3.11"></a>
+[Go to top](#top)
